@@ -5,9 +5,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { TabMenuModule } from 'primeng/tabmenu';
+import { DashboardComponent } from './page/dashboard/dashboard.component';
+import { ProfileComponent } from './page/profile/profile.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, DashboardComponent, ProfileComponent],
   imports: [BrowserModule, AppRoutingModule, TabMenuModule],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,3 +1,25 @@
+<div class="header">
+  <div class="left-header">
+    <span style="margin-left: 1rem" class="title-header"
+      >FOOD CHAIN MONITOR - ADMIN PORTAL</span
+    >
+  </div>
+
+  <div class="center-header">
+    <img [src]="logoPath" alt="logo" class="logo" />
+  </div>
+
+  <div class="right-header">
+    <span style="margin-right: 1rem" class="title-header"
+      >WELCOME, FIORE NUNZIO</span
+    >
+  </div>
+</div>
+
 <div class="menu">
   <p-tabMenu [model]="items" />
 </div>
+
+<router-outlet></router-outlet>
+
+<div class="footer"></div>

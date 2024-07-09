@@ -7,12 +7,14 @@ import { MenuItem } from 'primeng/api';
   styleUrl: './app.component.scss',
 })
 export class AppComponent implements OnInit {
+  public logoPath: string =
+    document.location.origin + '/assets/img/supply-chain-management.png';
   items: MenuItem[] | undefined;
 
   ngOnInit() {
     this.items = [
-      { label: 'Dashboard', icon: 'pi pi-home' },
-      { label: 'Profile', icon: 'pi pi-user' },
+      { label: 'Dashboard', icon: 'pi pi-home', routerLink: '/dashboard' },
+      { label: 'Profile', icon: 'pi pi-user', routerLink: '/profile' },
     ];
   }
 }
