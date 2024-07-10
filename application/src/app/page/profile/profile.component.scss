@@ -1,0 +1,27 @@
+.title {
+  text-align: center;
+  font-weight: bold;
+  font-size: x-large;
+  color: #6b7280;
+}
+
+.data {
+  margin-top: 2rem;
+  display: flex;
+  gap: 6rem;
+  color: #6b7280;
+  font-weight: bold;
+  justify-content: center;
+}
+
+.password {
+  display: grid;
+}
+
+:host ::ng-deep .main .p-inputtext {
+  width: 18rem;
+}
+
+:host ::ng-deep .password .p-button {
+  margin-top: 1rem;
+}

@@ -1,1 +1,64 @@
-<p>profile works!</p>
+<div class="main">
+  <div class="title">
+    <span>DATI UTENTE</span>
+  </div>
+  <div class="data">
+    <div>
+      <p>Nome</p>
+      <input
+        id="disabled-name"
+        type="text"
+        pInputText
+        [disabled]="true"
+        value="Nunzio"
+      />
+    </div>
+    <div>
+      <p>Cognome</p>
+      <input
+        id="disabled-name"
+        type="text"
+        pInputText
+        [disabled]="true"
+        value="Fiore"
+      />
+    </div>
+    <div>
+      <p>azienda di riferimento</p>
+      <input
+        id="disabled-name"
+        type="text"
+        pInputText
+        [disabled]="true"
+        value="Food S.R.L."
+      />
+    </div>
+  </div>
+  <div class="data">
+    <div>
+      <p>E-mail</p>
+      <input
+        id="disabled-name"
+        type="text"
+        pInputText
+        [disabled]="true"
+        value="nunzio.fiore@gmail.com"
+      />
+    </div>
+    <div class="password">
+      <p>Password</p>
+      <p-password [toggleMask]="true" [showClear]="true"></p-password>
+      <button pButton pRipple label="Change" class="p-button"></button>
+    </div>
+    <div>
+      <p>Telefono</p>
+      <input
+        id="disabled-name"
+        type="text"
+        pInputText
+        [disabled]="true"
+        value="+393245124589"
+      />
+    </div>
+  </div>
+</div>

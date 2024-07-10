@@ -45,3 +45,7 @@
   bottom: 0;
   left: 0;
 }
+
+:host ::ng-deep .right-header .p-avatar {
+  margin-right: 1rem;
+}
