@@ -64,7 +64,7 @@
           />
         </td>
         <td class="operations">
-          <p-button>EDIT</p-button>
+          <p-button (onClick)="showEditModal(operator)">EDIT</p-button>
           <p-button severity="danger" (onClick)="deleteOperator(operator.id)"
             >DELETE</p-button
           >
@@ -120,11 +120,20 @@
 
     <div class="p-field modal modal-btn">
       <button
+        *ngIf="!editMode"
         pButton
         type="button"
         label="Register"
         style="width: 8rem; margin-right: auto"
         (click)="addOperator()"
+      ></button>
+      <button
+        *ngIf="editMode"
+        pButton
+        type="button"
+        label="Edit"
+        style="width: 8rem; margin-right: auto"
+        (click)="editOperator()"
       ></button>
 
       <button

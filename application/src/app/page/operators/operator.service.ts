@@ -170,7 +170,6 @@ export class OperatorsService {
   ];
 
   constructor() {
-    // Inizializza la lista di operatori
     this.operatorsSubject.next(this.operatorList);
   }
 
@@ -194,8 +193,16 @@ export class OperatorsService {
   }
 
   updateOperator(updatedOperator: IOperator) {
+    var op: IOperator = {
+      id: updatedOperator.id,
+      image: updatedOperator.image,
+      code: updatedOperator.code,
+      name: updatedOperator.name,
+      company: updatedOperator.company,
+      role: updatedOperator.role,
+    };
     const currentOperators = this.operatorsSubject.value.map((operator) =>
-      operator.id === updatedOperator.id ? updatedOperator : operator
+      operator.id === updatedOperator.id ? op : operator
     );
     this.operatorsSubject.next(currentOperators);
   }

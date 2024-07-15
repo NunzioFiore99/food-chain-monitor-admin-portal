@@ -1,1 +1,64 @@
-<p>factory works!</p>
+<div style="display: flex">
+  <div style="width: 50%; margin-right: 0.5rem">
+    <div class="card">
+      <h1>Information Summary</h1>
+      <div class="p-grid">
+        <div class="p-col-12 p-md-6">
+          <p><strong>Name:</strong> {{ factory.name }}</p>
+        </div>
+        <div class="p-col-12 p-md-6">
+          <p><strong>Address:</strong> {{ factory.address }}</p>
+        </div>
+        <div class="p-col-12 p-md-6">
+          <p><strong>Employee Count:</strong> {{ factory.employeeCount }}</p>
+        </div>
+        <div class="p-col-12 p-md-6">
+          <p><strong>CEO:</strong> {{ factory.ceo }}</p>
+        </div>
+        <div class="p-col-12 p-md-6">
+          <p>
+            <strong>Date of Foundation:</strong>
+            {{ factory.foundedDate | date : "dd/MM/yyyy" }}
+          </p>
+        </div>
+        <div class="p-col-12">
+          <p><strong>Description:</strong> {{ factory.description }}</p>
+        </div>
+        <p-divider></p-divider>
+        <div class="p-col-12 p-md-6">
+          <p>
+            <strong>System Integrator Machine Count:</strong>
+            {{ factory.simCount }}
+          </p>
+        </div>
+        <div class="p-col-12 p-md-6">
+          <p>
+            <strong>Smart Sensor Count:</strong> {{ factory.smartSensorCount }}
+          </p>
+        </div>
+        <div class="p-col-12 p-md-6">
+          <p>
+            <strong>Smart Sensor Count:</strong>
+            {{ factory.sensorConnectionQuality }}
+          </p>
+        </div>
+        <div class="p-col-12 p-md-6">
+          <p>
+            <strong>Smart Sensor Count:</strong> {{ factory.sensorBrokenCount }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="width: 50%; margin-left: 0.5rem">
+    <div class="card" style="text-align: center">
+      <img
+        src="{{ factory.img }}"
+        alt="Factory Image"
+        style="width: 80%; height: auto"
+      />
+      <!-- Sostituisci "url_dell_immagine" con l'URL reale dell'immagine -->
+    </div>
+  </div>
+</div>

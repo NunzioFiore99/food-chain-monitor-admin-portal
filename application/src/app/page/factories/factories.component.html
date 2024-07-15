@@ -1,42 +1,46 @@
-<p-tabView styleClass="tabview-custom">
-  <p-tabPanel>
-    <ng-template pTemplate="header">
-      <div class="flex align-items-center gap-2">
-        <p-avatar
-          image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png"
-          shape="circle"
-        />
-        <span class="font-bold white-space-nowrap m-0"> Amy Elsner </span>
-      </div>
-    </ng-template>
-    <p>Lorem ipsum dolor sit amet...</p>
-  </p-tabPanel>
-  <p-tabPanel header="Header II">
-    <ng-template pTemplate="header">
-      <div class="flex align-items-center gap-2">
-        <p-avatar
-          image="https://primefaces.org/cdn/primeng/images/demo/avatar/onyamalimba.png"
-          shape="circle"
-        />
-        <span class="font-bold white-space-nowrap m-0"> Onyama Limba </span>
-      </div>
-    </ng-template>
-    <p>
-      Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-      accusantium...
-    </p>
-  </p-tabPanel>
-  <p-tabPanel header="Header III">
-    <ng-template pTemplate="header">
-      <div class="flex align-items-center gap-2">
-        <p-avatar
-          image="https://primefaces.org/cdn/primeng/images/demo/avatar/ionibowcher.png"
-          shape="circle"
-        />
-        <span class="font-bold white-space-nowrap m-0"> Ioni Bowcher </span>
-        <p-badge value="2" />
-      </div>
-    </ng-template>
-    <p>At vero eos et accusamus et iusto odio dignissimos...</p>
-  </p-tabPanel>
-</p-tabView>
+<div class="card">
+  <p-tabView styleClass="tabview-custom">
+    <p-tabPanel>
+      <ng-template pTemplate="header">
+        <div class="flex align-items-center gap-2">
+          <p-avatar
+            image="../../../../assets/img/factory1.jpg"
+            shape="circle"
+          />
+          <span class="font-bold white-space-nowrap m-0">
+            GreenHarvest SPA
+          </span>
+        </div>
+      </ng-template>
+      <app-factory [factory]="factory1"></app-factory>
+    </p-tabPanel>
+    <p-tabPanel header="Header II">
+      <ng-template pTemplate="header">
+        <div class="flex align-items-center gap-2">
+          <p-avatar
+            image="../../../../assets/img/factory2.jpg"
+            shape="circle"
+          />
+          <span class="font-bold white-space-nowrap m-0">
+            Food Company SPA
+          </span>
+        </div>
+      </ng-template>
+      <app-factory [factory]="factory2"></app-factory>
+    </p-tabPanel>
+    <p-tabPanel header="Header II">
+      <ng-template pTemplate="header">
+        <div class="flex align-items-center gap-2">
+          <p-avatar
+            image="../../../../assets/img/factory3.jpg"
+            shape="circle"
+          />
+          <span class="font-bold white-space-nowrap m-0">
+            Box Enterprises SRL
+          </span>
+        </div>
+      </ng-template>
+      <app-factory [factory]="factory3"></app-factory>
+    </p-tabPanel>
+  </p-tabView>
+</div>

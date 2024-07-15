@@ -13,6 +13,7 @@ export class OperatorsComponent implements OnInit {
   operators!: IOperator[];
   private subscription!: Subscription;
   visible: boolean = false;
+  editMode: boolean = false;
 
   operator: IOperator = {
     id: '',
@@ -57,6 +58,7 @@ export class OperatorsComponent implements OnInit {
 
   showModal() {
     this.visible = !this.visible;
+    this.editMode = false;
   }
 
   addOperator() {
@@ -67,6 +69,18 @@ export class OperatorsComponent implements OnInit {
 
   deleteOperator(id: string) {
     this.operatorService.removeOperator(id);
+  }
+
+  showEditModal(operator: IOperator) {
+    this.visible = !this.visible;
+    this.editMode = true;
+    this.operator = operator;
+  }
+
+  editOperator() {
+    this.visible = !this.visible;
+    this.operatorService.updateOperator(this.operator);
+    this.clearBox();
   }
 
   clearBox() {
