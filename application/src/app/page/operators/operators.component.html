@@ -1,24 +1,52 @@
 <div class="card">
   <p-table
+    #dt1
     [value]="operators"
     styleClass="p-datatable-gridlines"
     [tableStyle]="{ 'min-width': '50rem' }"
     [paginator]="true"
     [rows]="5"
+    [rowsPerPageOptions]="[5, 10, 15]"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [globalFilterFields]="['id', 'name', 'code', 'name', 'company']"
+    dataKey="Id"
   >
+    <ng-template pTemplate="caption">
+      <div style="display: flex">
+        <div>
+          <p-button (onClick)="addOperator()">ADD OPERATOR</p-button>
+        </div>
+        <div style="margin-left: auto">
+          <span class="p-input-icon-left p-ml-auto">
+            <i class="pi pi-search"></i>
+            <input
+              pInputText
+              type="text"
+              (input)="dt1.filterGlobal($any($event.target).value, 'contains')"
+              placeholder="Search"
+            />
+          </span>
+        </div>
+      </div>
+    </ng-template>
     <ng-template pTemplate="header" let-columns>
       <tr>
-        <th>Id</th>
-        <th>Code</th>
-        <th>Name</th>
-        <th>Company</th>
-        <th>Role</th>
+        <th style="background: darkgray">Id</th>
+        <th style="background: darkgray">Image</th>
+        <th style="background: darkgray">Code</th>
+        <th style="background: darkgray">Name</th>
+        <th style="background: darkgray">Company</th>
+        <th style="background: darkgray">Role</th>
+        <th style="background: darkgray">Operations</th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-operator let-columns="columns">
-      <tr>
+      <tr style="background: #a5e3dd">
         <td>
           {{ operator.id }}
+        </td>
+        <td class="avatar">
+          <p-avatar image="{{ operator.image }}" size="xlarge"></p-avatar>
         </td>
         <td>
           {{ operator.code }}
@@ -35,7 +63,69 @@
             [severity]="getSeverity(operator.role)"
           />
         </td>
+        <td class="operations">
+          <p-button>EDIT</p-button>
+          <p-button severity="danger">DELETE</p-button>
+        </td>
       </tr>
     </ng-template>
   </p-table>
 </div>
+
+<p-dialog
+  header="ADD NEW OPERATOR"
+  [modal]="true"
+  [(visible)]="visible"
+  [style]="{ width: '50rem' }"
+  [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
+  [maximizable]="true"
+>
+  <div class="p-fluid">
+    <div class="p-field modal">
+      <label for="name">Nome</label>
+      <input id="name" type="text" pInputText [(ngModel)]="operator.name" />
+    </div>
+
+    <div class="p-field modal">
+      <label for="code">Codice</label>
+      <input id="code" type="text" pInputText [(ngModel)]="operator.code" />
+    </div>
+
+    <div class="p-field modal">
+      <label for="company">Azienda</label>
+      <input
+        id="company"
+        type="text"
+        pInputText
+        [(ngModel)]="operator.company"
+      />
+    </div>
+
+    <div class="p-field modal">
+      <label for="role">Ruolo</label>
+      <p-dropdown
+        [options]="roles"
+        [(ngModel)]="operator.role"
+        optionLabel="label"
+      ></p-dropdown>
+    </div>
+
+    <div class="p-field modal modal-btn">
+      <button
+        pButton
+        type="button"
+        label="Register"
+        style="width: 8rem; margin-right: auto"
+        (click)="addOperator()"
+      ></button>
+
+      <button
+        pButton
+        type="button"
+        label="clear"
+        style="width: 8rem"
+        (click)="clearBox()"
+      ></button>
+    </div>
+  </div>
+</p-dialog>
