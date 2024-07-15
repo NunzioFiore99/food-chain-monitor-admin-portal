@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OperatorsService } from './operator.service';
 import { IOperator } from './IOperator';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-operators',
@@ -10,26 +11,37 @@ import { IOperator } from './IOperator';
 })
 export class OperatorsComponent implements OnInit {
   operators!: IOperator[];
+  private subscription!: Subscription;
   visible: boolean = false;
 
-  operator = {
-    name: '',
+  operator: IOperator = {
+    id: '',
+    image: '',
     code: '',
+    name: '',
     company: '',
-    role: null,
+    role: '',
   };
-
   roles = [
-    { label: 'Manager', value: 'manager' },
-    { label: 'Viewer', value: 'viewer' },
+    { label: 'Manager', value: 'MANAGER' },
+    { label: 'Viewer', value: 'VIEWER' },
   ];
 
   constructor(private operatorService: OperatorsService) {}
 
   ngOnInit() {
-    this.operatorService.getOperators().then((data) => {
-      this.operators = data;
-    });
+    this.subscription = this.operatorService.operators$.subscribe(
+      (operators) => {
+        console.log(operators);
+        this.operators = operators;
+      }
+    );
+  }
+
+  ngOnDestroy() {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 
   getSeverity(status: string) {
@@ -39,20 +51,28 @@ export class OperatorsComponent implements OnInit {
       case 'VIEWER':
         return 'warning';
       default:
-        throw new Error('Input non valido');
+        return 'secondary';
     }
+  }
+
+  showModal() {
+    this.visible = !this.visible;
   }
 
   addOperator() {
     this.visible = !this.visible;
-
+    this.operatorService.addOperator(this.operator);
     this.clearBox();
+  }
+
+  deleteOperator(id: string) {
+    this.operatorService.removeOperator(id);
   }
 
   clearBox() {
     this.operator.name = '';
     this.operator.code = '';
     this.operator.company = '';
-    this.operator.role = null;
+    this.operator.role = '';
   }
 }

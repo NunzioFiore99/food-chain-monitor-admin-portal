@@ -1,18 +1,11 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { IOperator } from './IOperator';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable()
 export class OperatorsService {
-  IOperator: IOperator = {
-    id: '',
-    image: '',
-    code: '',
-    name: '',
-    company: '',
-    role: '',
-  };
-
+  private operatorsSubject = new BehaviorSubject<IOperator[]>([]);
+  public operators$ = this.operatorsSubject.asObservable();
   public operatorList: IOperator[] = [
     {
       id: '1',
@@ -176,27 +169,41 @@ export class OperatorsService {
     },
   ];
 
-  getOperatorsData() {
-    return this.operatorList;
+  constructor() {
+    // Inizializza la lista di operatori
+    this.operatorsSubject.next(this.operatorList);
   }
 
-  getOperators() {
-    return Promise.resolve(this.getOperatorsData());
-  }
+  addOperator(operator: IOperator) {
+    operator.id = (this.operatorList.length + 1).toString();
+    operator.image =
+      operator.role == 'MANAGER'
+        ? '../../../../assets/img/manager1.jpg'
+        : '../../../../assets/img/operaio1.jpg';
 
-  addOperator(name: string, code: string, company: string, role: string) {
-    let operator: IOperator = {
-      id: (this.operatorList.values.length + 1).toString(),
-      image:
-        role == 'MANAGER'
-          ? '../../../../assets/img/manager1.jpg'
-          : '../../../../assets/img/operaio1.jpg',
-      code: code,
-      name: name,
-      company: company,
-      role: role,
+    var op: IOperator = {
+      id: operator.id,
+      image: operator.image,
+      code: operator.code,
+      name: operator.name,
+      company: operator.company,
+      role: operator.role,
     };
+    const currentOperators = this.operatorsSubject.value;
+    this.operatorsSubject.next([...currentOperators, op]);
+  }
 
-    this.operatorList.push(operator);
+  updateOperator(updatedOperator: IOperator) {
+    const currentOperators = this.operatorsSubject.value.map((operator) =>
+      operator.id === updatedOperator.id ? updatedOperator : operator
+    );
+    this.operatorsSubject.next(currentOperators);
+  }
+
+  removeOperator(operatorId: string) {
+    const currentOperators = this.operatorsSubject.value.filter(
+      (operator) => operator.id !== operatorId
+    );
+    this.operatorsSubject.next(currentOperators);
   }
 }

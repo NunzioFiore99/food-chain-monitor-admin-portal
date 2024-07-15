@@ -14,7 +14,7 @@
     <ng-template pTemplate="caption">
       <div style="display: flex">
         <div>
-          <p-button (onClick)="addOperator()">ADD OPERATOR</p-button>
+          <p-button (onClick)="showModal()">ADD OPERATOR</p-button>
         </div>
         <div style="margin-left: auto">
           <span class="p-input-icon-left p-ml-auto">
@@ -65,7 +65,9 @@
         </td>
         <td class="operations">
           <p-button>EDIT</p-button>
-          <p-button severity="danger">DELETE</p-button>
+          <p-button severity="danger" (onClick)="deleteOperator(operator.id)"
+            >DELETE</p-button
+          >
         </td>
       </tr>
     </ng-template>
@@ -104,10 +106,16 @@
     <div class="p-field modal">
       <label for="role">Ruolo</label>
       <p-dropdown
+        id="role"
         [options]="roles"
         [(ngModel)]="operator.role"
+        name="role"
+        placeholder="Seleziona un ruolo"
         optionLabel="label"
-      ></p-dropdown>
+        optionValue="value"
+        required
+      >
+      </p-dropdown>
     </div>
 
     <div class="p-field modal modal-btn">
